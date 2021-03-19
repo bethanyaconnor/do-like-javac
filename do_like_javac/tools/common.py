@@ -93,6 +93,7 @@ def run_cmd(cmd, args=None, tool=None):
       output(line)
 
     process.stdout.close()
+    print("starting to wait")
     process.wait()
     print("process finished!")
     print(str(process))
@@ -106,5 +107,7 @@ def run_cmd(cmd, args=None, tool=None):
 
   if out_file:
     out.close()
+
+  print("returning!")
 
   return stats
