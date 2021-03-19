@@ -84,16 +84,16 @@ def run_cmd(cmd, args=None, tool=None):
     print("starting subprocess")
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     print("process: " + str(process))
-    if args and args.timeout:
-      timer = Timer(args.timeout, kill_proc, [process, stats])
-      timer.start()
+    # if args and args.timeout:
+    #   timer = Timer(args.timeout, kill_proc, [process, stats])
+    #   timer.start()
 
     for line in iter(process.stdout.readline, b''):
       print("reading a line of output: " + line)
       stats['output'] = stats['output'] + line
       output(line)
 
-    #process.stdout.close()
+    process.stdout.close()
     print("starting to wait")
     process.wait()
     print("process finished!")
