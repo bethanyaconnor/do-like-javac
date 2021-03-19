@@ -89,6 +89,7 @@ def run_cmd(cmd, args=None, tool=None):
       timer.start()
 
     for line in iter(process.stdout.readline, b''):
+      print("reading a line of output: " + line)
       stats['output'] = stats['output'] + line
       output(line)
 
