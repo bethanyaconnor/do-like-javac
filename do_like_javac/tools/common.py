@@ -58,6 +58,8 @@ def run_cmd(cmd, args=None, tool=None):
   out_file = None
   friendly_cmd = ' '.join(cmd)
 
+  print("running " + friendly_cmd)
+
   if args and args.verbose and args.log_to_stderr:
     out = sys.stderr
   elif tool:
@@ -79,6 +81,7 @@ def run_cmd(cmd, args=None, tool=None):
 
   try:
     start_time = timeit.default_timer()
+    print("starting subprocess")
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
 
     if args and args.timeout:
@@ -91,6 +94,8 @@ def run_cmd(cmd, args=None, tool=None):
 
     process.stdout.close()
     process.wait()
+    print("process finished!")
+    print(str(process))
     stats['time'] = timeit.default_timer() - start_time
     stats['return_code'] = process.returncode
     if timer:
