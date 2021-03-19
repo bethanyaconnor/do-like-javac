@@ -65,6 +65,8 @@ class GenericCapture(object):
         with open(os.path.join(self.args.output_directory, 'build_output.txt'), 'w') as f:
             f.write(result['output'])
 
+        print(str(result))
+
         if result['return_code'] != 0:
             return None
 
