@@ -92,7 +92,7 @@ def run_cmd(cmd, args=None, tool=None):
       stats['output'] = stats['output'] + line
       output(line)
 
-    process.stdout.close()
+    #process.stdout.close()
     print("starting to wait")
     process.wait()
     print("process finished!")
