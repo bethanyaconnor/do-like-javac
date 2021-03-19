@@ -1,7 +1,7 @@
 import os
 import zipfile
 import timeit
-import do_like_javac.tools.common as cmdtools
+from do_like_javac.tools import common
 
 def is_switch(s):
     return s != None and s.startswith('-')
@@ -59,13 +59,11 @@ class GenericCapture(object):
         stats = {}
 
         start_time = timeit.default_timer()
-        result = cmdtools.run_cmd(self.build_cmd)
+        result = common.run_cmd(self.build_cmd)
 #        stats['build_time'] = result['time']
 
         with open(os.path.join(self.args.output_directory, 'build_output.txt'), 'w') as f:
             f.write(result['output'])
-
-        print(str(result))
 
         if result['return_code'] != 0:
             return None
@@ -113,7 +111,7 @@ class GenericCapture(object):
 
     def record_stats(self, stats, javac_commands, jars):
         stats['source_files'] = sum([len(cmd['java_files']) for cmd in javac_commands])
-        stats['class_files'] = sum([len(cmdtools.get_class_files(cmd)) for cmd in javac_commands])
+        stats['class_files'] = sum([len(common.get_class_files(cmd)) for cmd in javac_commands])
         stats['javac_invocations'] = len(javac_commands)
         stats['built_jars'] = len(jars)
         stats['executable_jars'] = len([jar for jar in jars if 'main' in jar])
