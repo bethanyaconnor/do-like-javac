@@ -83,7 +83,7 @@ def run_cmd(cmd, args=None, tool=None):
     start_time = timeit.default_timer()
     print("starting subprocess")
     process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-
+    print("process: " + str(process))
     if args and args.timeout:
       timer = Timer(args.timeout, kill_proc, [process, stats])
       timer.start()
