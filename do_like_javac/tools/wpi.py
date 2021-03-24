@@ -1,5 +1,7 @@
 from filecmp import dircmp
 
+import sys
+
 import common
 import os
 import pprint
@@ -22,6 +24,8 @@ ignored_options = ("classpath",
 ignored_options_prefixes = ("Xep:", "XepExcludedPaths:")
 
 def run(args, javac_commands, jars):
+    sys.exit('bad python')
+
     # checker-framework javac.
     javacheck = os.environ['CHECKERFRAMEWORK']+"/checker/bin/javac"
     checker_command = [javacheck, "-AmergeStubsWithSource", "-Xmaxerrs", "10000", "-Xmaxwarns", "10000"]
